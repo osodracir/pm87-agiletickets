@@ -16,9 +16,9 @@ public class SessaoTest {
 	@Test
 	public void deveVenderIngressosSeQuantidadeDeVagasForIgual() throws Exception {
 		Sessao sessao = new Sessao();
-        sessao.setTotalIngressos(3);
+        sessao.setTotalIngressos(2);
 
-        Assert.assertTrue(sessao.podeReservar(3));
+        Assert.assertTrue(sessao.podeReservar(2));
 	}
 
 	@Test
