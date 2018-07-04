@@ -6,7 +6,7 @@ import org.junit.Test;
 public class SessaoTest {
 
 	@Test
-	public void deveVender1ingressoSeHa2vagas() throws Exception {
+	public void deveVenderIngressosSeQuantidadeDeVagasForSuperior() throws Exception {
 		Sessao sessao = new Sessao();
         sessao.setTotalIngressos(2);
 
@@ -14,7 +14,15 @@ public class SessaoTest {
 	}
 
 	@Test
-	public void naoDeveVender3ingressoSeHa2vagas() throws Exception {
+	public void deveVenderIngressosSeQuantidadeDeVagasForIgual() throws Exception {
+		Sessao sessao = new Sessao();
+        sessao.setTotalIngressos(3);
+
+        Assert.assertTrue(sessao.podeReservar(3));
+	}
+
+	@Test
+	public void naoDeveVenderIngressoSeQuantidadeDeVagasForInferior() throws Exception {
 		Sessao sessao = new Sessao();
 		sessao.setTotalIngressos(2);
 
