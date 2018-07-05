@@ -96,14 +96,26 @@ public class Espetaculo {
      * a cada 7 dias: 01/01, 08/01, 15/01, 22/01 e 29/01.
      * 
      * Repare que a data da primeira sessao é sempre a data inicial.
+	 * @throws Exception 
      */
 	public List<Sessao> criaSessoes(LocalDate inicio, LocalDate fim, LocalTime horario, Periodicidade periodicidade) {
 		// ALUNO: Não apague esse metodo. Esse sim será usado no futuro! ;)
+		final int SALTO = periodicidade.equals(Periodicidade.DIARIA) ? 1 : 7;
+		Sessao sessao;
+		
+		if(inicio.isAfter(fim)){
+			throw new RuntimeException();
+		}
+		LocalDate data;
+
 		List<Sessao> sessoes = new ArrayList<Sessao>();
-		Sessao sessao = new Sessao();
-		sessao.setInicio(inicio.toDateTime(horario));
-		sessao.setEspetaculo(this);
-		sessoes.add(sessao);
+		for(data = inicio; !data.isAfter(fim); data = data.plusDays(SALTO)) {
+			sessao = new Sessao();
+			sessao.setInicio(data.toDateTime(horario));
+			sessao.setEspetaculo(this);
+
+			sessoes.add(sessao);
+		}
 		return sessoes;
 	}
 	

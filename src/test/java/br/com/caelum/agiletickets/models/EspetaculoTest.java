@@ -100,6 +100,44 @@ public class EspetaculoTest {
 		Assert.assertEquals("20:00", sessao.getHora());
 		Assert.assertEquals(espetaculo, sessao.getEspetaculo());
 	}
+	
+	@Test
+	public void deveCriarTresEspetaculosComPeriodicidadeSemanal() {
+		// ARRANGE
+		int i;
+		LocalDate inicio = new LocalDate(2018, 7, 9);
+		LocalDate fim = new LocalDate(2018, 7, 23);
+		LocalTime horario = new LocalTime(17, 0);
+		Periodicidade periodicidade = Periodicidade.SEMANAL;
+		Espetaculo espetaculo = new Espetaculo();
+		
+		// ACT
+		List<Sessao> sessoes = espetaculo.criaSessoes(inicio, fim, horario, periodicidade);
+		
+		// ASSERT
+		Assert.assertNotNull("Sessões não devem ser nulas", sessoes);
+		Assert.assertEquals(3, sessoes.size());
+		Assert.assertEquals("09/07/18", sessoes.get(0).getDia());
+		Assert.assertEquals("16/07/18", sessoes.get(1).getDia());
+		Assert.assertEquals("23/07/18", sessoes.get(2).getDia());
+		for(i = 0; i < 3; ++i) {
+			Assert.assertEquals("17:00", sessoes.get(i).getHora());
+			Assert.assertEquals(espetaculo, sessoes.get(i).getEspetaculo());
+		}
+	}
+	
+	@Test(expected = Exception.class)
+	public void deveReclamarQuandoInicioForPosteriorAoFim() {
+		LocalDate inicio = new LocalDate(2018, 7, 23);
+		LocalDate fim = new LocalDate(2018, 7, 9);
+		LocalTime horario = new LocalTime(17, 0);
+		Periodicidade periodicidade = Periodicidade.SEMANAL;
+		Espetaculo espetaculo = new Espetaculo();	
+		
+		List<Sessao> sessoes = espetaculo.criaSessoes(inicio, fim, horario, periodicidade);
+
+		Assert.assertNotNull("Sessões não devem ser nulas", sessoes);
+	}
 
 	private Sessao sessaoComIngressosSobrando(int quantidade) {
 		Sessao sessao = new Sessao();
