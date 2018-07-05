@@ -130,7 +130,7 @@ public class EspetaculoTest {
 	public void deveReclamarQuandoInicioForPosteriorAoFim() {
 		LocalDate inicio = new LocalDate(2018, 7, 23);
 		LocalDate fim = new LocalDate(2018, 7, 9);
-		LocalTime horario = new LocalTime(17, 0);
+		LocalTime horario = new LocalTime(17, 0); 
 		Periodicidade periodicidade = Periodicidade.SEMANAL;
 		Espetaculo espetaculo = new Espetaculo();	
 		
