@@ -102,13 +102,12 @@ public class Espetaculo {
 		// ALUNO: Não apague esse metodo. Esse sim será usado no futuro! ;)
 		final int SALTO = periodicidade.equals(Periodicidade.DIARIA) ? 1 : 7;
 		Sessao sessao;
+		LocalDate data;
+		List<Sessao> sessoes = new ArrayList<Sessao>();
 		
 		if(inicio.isAfter(fim)){
 			throw new RuntimeException();
 		}
-		LocalDate data;
-
-		List<Sessao> sessoes = new ArrayList<Sessao>();
 		for(data = inicio; !data.isAfter(fim); data = data.plusDays(SALTO)) {
 			sessao = new Sessao();
 			sessao.setInicio(data.toDateTime(horario));
