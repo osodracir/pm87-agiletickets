@@ -112,7 +112,6 @@ public class Espetaculo {
 			sessao = new Sessao();
 			sessao.setInicio(data.toDateTime(horario));
 			sessao.setEspetaculo(this);
-
 			sessoes.add(sessao);
 		}
 		return sessoes;
